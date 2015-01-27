@@ -1,0 +1,40 @@
+{
+  "name": "katie",
+  "version": "0.0.1",
+  "description": "Query JSON objects using SQL statements",
+  "homepage": "http://davidxi.github.io/katie/",
+  "bugs": {
+    "url": "https://github.com/davidxi/katie/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidxi/katie.git"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "browserify": "^5.9.1",
+    "gulp": "~3.5.2",
+    "gulp-concat": "~2.2.0",
+    "gulp-if": "~1.2.4",
+    "gulp-jshint": "1.8.5",
+    "gulp-rename": "1.2.0",
+    "gulp-rimraf": "0.0.9",
+    "gulp-tap": "0.1.1",
+    "gulp-uglify": "~1.0.1",
+    "gulp-util": "~2.2.14",
+    "jest-cli": "^0.2.1",
+    "jshint-stylish": "1.0.0",
+    "run-sequence": "^0.3.6",
+    "streamqueue": "0.0.4",
+    "through": "2.3.4",
+    "vinyl-source-stream": "^0.1.1"
+  },
+  "scripts": {
+    "test": "jest --i"
+  },
+  "dependencies": {
+    "underscore": "^1.7.0"
+  },
+  "main": "index.js",
+  "author": ""
+}
