@@ -1,13 +1,12 @@
 /**
  * @providesModule assertNodeType
  */
-var parser = this.SQLParser;
-
 var _ = require('underscore');
+var parser = require('sql-parser');
 var invariant = require('../utils/invariant');
 
 function assertNodeType(node/*Object*/, type/*String*/) /* bool */{
-    if (!node)    {
+    if (!node) {
         //invariant(node, 'node is empty');
         return false;
     }

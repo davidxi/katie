@@ -12,7 +12,7 @@ var _orderBy = require('../clauses/orderByClause');
 var _select = require('../clauses/selectClause');
 var _where = require('../clauses/whereClause');
 
-function traverseTree(tree, result) /*tableObj*/ {
+function traverseTree(tree, result, dataSourcesMapping) /*tableObj*/ {
     invariant(assertNodeType(tree, 'select'), 'expect select node being root');
 
     var node;
@@ -20,7 +20,7 @@ function traverseTree(tree, result) /*tableObj*/ {
 
     // FROM clause
     node = tree.source;
-    result = _from(node);
+    result = _from(traverseTree, node, dataSourcesMapping);
 
     // JOIN clause
     node = tree.joins; // array of [Join]
@@ -38,7 +38,7 @@ function traverseTree(tree, result) /*tableObj*/ {
     // GROUP BY clause
     node = tree.group;
     if (assertNodeType(node, 'group')) {
-        result = _groupBy(traverseTree, [result].concat(node.fields));
+        result = _groupBy.apply(null, [traverseTree, result].concat(node.fields));
     }
 
     // SELECT clause
@@ -47,19 +47,19 @@ function traverseTree(tree, result) /*tableObj*/ {
 
         // TODO check if exist non-aggregate fields not in aggregate function
 
-        result = _select(traverseTree, [result].concat(node));
+        result = _select.apply(null, [traverseTree, result].concat(node));
     }
 
     // ORDER BY clause
     node = tree.order;
     if (assertNodeType(node, 'order')) {
-        result = _orderBy(traverseTree, [result].concat(node.orderings));
+        result = _orderBy.apply(null, [traverseTree, result].concat(node.orderings));
     }
 
     // LIMIT clause
     node = tree.limit;
     if (node && assertNodeType(node, 'limit')) {
-        result = _limit(traverseTree, [result].concat(node));
+        result = _limit.apply(null, [traverseTree, result].concat(node));
     }
 
     return result;

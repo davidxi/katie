@@ -1,6 +1,6 @@
 {
   "name": "katie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Query JSON objects using SQL statements",
   "homepage": "http://davidxi.github.io/katie/",
   "bugs": {
@@ -30,10 +30,12 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "scripts": {
+    "pretest": "node ./node_modules/gulp/bin/gulp.js browserify",
     "test": "jest --i"
   },
   "dependencies": {
-    "underscore": "^1.7.0"
+    "underscore": "^1.7.0",
+    "sql-parser": "^0.5.0"
   },
   "main": "index.js",
   "author": ""
